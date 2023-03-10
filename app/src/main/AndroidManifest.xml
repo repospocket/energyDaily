@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <application
+        android:name="energyDaily.example.energyDaily.App"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_baseline_face_24"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_baseline_face_24"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Wass"
+
+        >
+        <activity android:name="energyDaily.example.energyDaily.MainActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:fitsSystemWindows="true"
+            android:exported="true"
+
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <receiver android:name="energyDaily.example.energyDaily.NotificationReceiver" />
+    </application>
+
+</manifest>
