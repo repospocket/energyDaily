@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">EnergyDaily</string>
     <string name="tess">Went biking, Exams season</string>
+    <string name="how_are_you_feeling_today">How are you feeling today?</string>
+    <string name="low">Low</string>
+    <string name="normal">Normal</string>
+    <string name="add">add</string>
+    <string name="add_a_note">add a note:</string>
+    <string name="good">good</string>
 
 
 </resources>

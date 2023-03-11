@@ -5,77 +5,77 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    >
+    android:fillViewport="true">
 
     <RelativeLayout
-        android:orientation="vertical"
         android:id="@+id/haha"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#000000"
+        android:fitsSystemWindows="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:orientation="vertical"
         tools:context="energyDaily.example.energyDaily.MainActivity"
-        android:fitsSystemWindows="true"
 
         >
+
         <com.applandeo.materialcalendarview.CalendarView
             android:id="@+id/calendarView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:eventsEnabled="false"
-            tools:layout_editor_absoluteX="0dp"
-           />
+            tools:layout_editor_absoluteX="0dp" />
 
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="How are you feeling today?"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:layout_marginTop="15dp"
+            android:layout_height="38dp"
             android:layout_below="@id/calendarView"
-            />
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="@string/how_are_you_feeling_today"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/rowrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView"
-            >
+            android:layout_below="@id/textView">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button5"
+                style="@style/Widget.AppCompat.Button"
                 android:layout_width="124dp"
                 android:layout_height="52dp"
+                android:backgroundTint="#ED3434"
                 android:onClick="tapcolor"
                 android:tag="red"
-                android:text="Low"
-                app:backgroundTint="#DA1414" />
+                android:text="@string/low" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button2"
-                android:layout_width="124dp"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="0dp"
                 android:layout_height="52dp"
                 android:layout_weight="1"
+                android:backgroundTint="#1E88E5"
                 android:onClick="tapcolor"
                 android:tag="blue"
-                android:text="Normal"
-                app:backgroundTint="@android:color/holo_blue_dark" />
+                android:text="@string/normal" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button"
+                style="@style/Widget.AppCompat.Button"
                 android:layout_width="124dp"
                 android:layout_height="52dp"
+                android:backgroundTint="#43A047"
                 android:onClick="tapcolor"
                 android:tag="green"
-                android:text="good"
-                android:visibility="visible"
-                app:backgroundTint="#4CAF50" />
+
+                android:text="@string/good" />
 
 
         </LinearLayout>
@@ -87,53 +87,51 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/rowrow"
             android:layout_marginTop="15dp"
+            android:autofillHints="@string/add_a_note"
             android:ems="5"
             android:gravity="center"
-            android:inputType="textPersonName"
-            android:text="add a note:"
+            android:labelFor="@id/editTextTextPersonName"
+            android:minHeight="48dp"
+            android:text="@string/add_a_note"
             android:textAlignment="center"
-            android:textColor="#FAFAFA"
+            android:textColor="#FAFAFA" />
 
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextTextPersonName"
+            android:gravity="center">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/editTextTextPersonName"
-    android:gravity="center"
-    >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textnote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:gravity="center"
+                android:hint="@string/tess"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:shadowColor="#FFEB3B"
+                android:textColor="#03A9F4"
+                android:textColorHighlight="#009688"
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textnote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/purple_200"
-        android:gravity="center"
-        android:hint="@string/tess"
-        android:maxLength="20"
-        android:maxLines="1"
-        android:shadowColor="#FFEB3B"
-        android:textColor="#03A9F4"
-        android:textColorHighlight="#009688"
-
-        android:textColorHint="#4500BCD4"
-        android:textColorLink="#8BC34A"
+                android:textColorHint="#4500BCD4"
+                android:textColorLink="#8BC34A"
 
 
-        />
+                tools:ignore="TouchTargetSizeCheck" />
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="90dp"
-        android:layout_height="38dp"
-        android:layout_below="@id/textnote"
-        android:layout_centerHorizontal="true"
-        android:autoSizeTextType="uniform"
-        android:onClick="submitNote"
-        android:text="add"
-        android:textAlignment="center" />
-</LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="90dp"
+                android:layout_height="38dp"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="#00897B"
+                android:onClick="submitNote"
+                android:text="@string/add"
+                android:textAlignment="center"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
 
     </RelativeLayout>
 
