@@ -114,8 +114,8 @@ class MainActivity : AppCompatActivity() {
             "            Note saved :)\n Tap on a day to show a note",
             Toast.LENGTH_SHORT
         ).show()
-        this.recreate()
-        binding.textnote.setText("")
+        this.recreate()  //removes keyboard after submit
+        binding.textnote.setText("")  //clears text
 
     }
 

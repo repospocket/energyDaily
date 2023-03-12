@@ -4,3 +4,5 @@ The in-app calendar will show in three colors your daily levels of energy you re
 An option do add a note for the current day and display notes from past days.  
 ![example](screenshots/sc1.jpeg)  
 ![example](screenshots/sc2.jpeg)
+<img src="screenshots/sc1.jpeg" width="400">
+<img src="screenshots/sc2.jpeg" width="400">
