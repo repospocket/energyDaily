@@ -11,20 +11,27 @@
         android:theme="@style/Theme"
 
         >
-        <activity android:name="energyDaily.example.energyDaily.MainActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:fitsSystemWindows="true"
+        <activity
+            android:name="energyDaily.example.energyDaily.MainActivity"
             android:exported="true"
+            android:fitsSystemWindows="true"
+            android:windowSoftInputMode="adjustResize"
 
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name="energyDaily.example.energyDaily.NotificationReceiver" />
+
+        <receiver
+            android:name=".NotificationReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="dailycheck" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

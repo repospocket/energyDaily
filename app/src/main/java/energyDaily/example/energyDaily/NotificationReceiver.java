@@ -1,25 +1,22 @@
 package energyDaily.example.energyDaily;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
-
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.HashMap;
-
 
 public class NotificationReceiver extends BroadcastReceiver {
 
@@ -43,7 +40,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(datacolo);
-        Log.d("SaveDataa", json);
+        Log.d("SaveData", json);
         editor.putString("task list", json);
         editor.apply();
     }
@@ -51,33 +48,31 @@ public class NotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-
         sendOnChannel1(context);
 
         int day = java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_MONTH);
         int month = java.util.Calendar.getInstance().get(java.util.Calendar.MONTH);
         int year = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
-        String lala = year + " " + month + " " + day;
+        String fulldate = year + " " + month + " " + day;
 
         if (notificationManager == null)
             notificationManager = NotificationManagerCompat.from(context);
 
         switch (intent.getAction()) {
             case "blue":
-                saveData(lala, "blue", context);
+                saveData(fulldate, "blue", context);
                 Toast.makeText(context, "Normal energy..", Toast.LENGTH_SHORT).show();
                 notificationManager.cancelAll();
 
-
                 break;
             case "red":
-                saveData(lala, "red", context);
+                saveData(fulldate, "red", context);
                 Toast.makeText(context, "Low energy..", Toast.LENGTH_SHORT).show();
                 notificationManager.cancelAll();
 
                 break;
             case "green":
-                saveData(lala, "green", context);
+                saveData(fulldate, "green", context);
                 Toast.makeText(context, "High energy..", Toast.LENGTH_SHORT).show();
                 notificationManager.cancelAll();
 
@@ -91,7 +86,6 @@ public class NotificationReceiver extends BroadcastReceiver {
 
 
     public void sendOnChannel1(Context context) {
-
 
         Intent activityIntent = new Intent(context, MainActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(context,
@@ -114,8 +108,8 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         Notification notification = new NotificationCompat.Builder(context, "channel1")
                 .setSmallIcon(R.drawable.ic_face)
-                .setContentTitle("Time to check in..")
-                .setContentText("How are you feeling today?\n(click on me to add a note too)")
+                .setContentTitle("Daily Energy Check-In")
+                .setContentText("How are you feeling today?")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .setContentIntent(contentIntent)
@@ -129,8 +123,11 @@ public class NotificationReceiver extends BroadcastReceiver {
         if (notificationManager == null)
             notificationManager = NotificationManagerCompat.from(context);
 
-        if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            notificationManager.notify(1, notification);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS);
         }
+
+        notificationManager.notify(1, notification);
+
     }
 }
